@@ -64,7 +64,7 @@ bot.on('message', function(data) {
 				request(addUserOptions, callback);
 				bot.sendPM(data.user, `Adiciona conta ${email}, com a password: *${args[1]}*`);
 			}else{
-				bot.sendPM(data.user, "Regista um novo email @junisec.pt\nFormato: `!register [username] [password]`");
+				bot.sendPM(data.user, "Regista um novo email [username]@junisec.pt\nFormato: `!register [username] [password]`");
 			}
 		}
 
