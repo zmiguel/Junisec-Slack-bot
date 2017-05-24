@@ -1,0 +1,19 @@
+{
+  "name": "slack-bot",
+  "version": "1.0.0",
+  "description": "Slack bot da Junisec",
+  "main": "bot.js",
+  "dependencies": {
+    "slackbotapi": "^1.3.9",
+	"jsonfile": "^2.4.0",
+    "nodemon": "^1.11.0",
+    "random-js": "^1.0.8",
+	"request" : "^2.81.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "zmiguel",
+  "license": "ISC"
+}
