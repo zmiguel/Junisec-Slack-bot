@@ -45,7 +45,11 @@ bot.on('message', function(data) {
 		let argc = args.length;
 
 		if (command === "ping"){
-			bot.sendMsg(data.channel, "PONG CARALHO!");
+			if(data.user === "U4MPBP293"){
+				bot.sendMsg(data.channel, "Fodasse pah! deixa-me em paz!");
+			}else{
+				bot.sendMsg(data.channel, "PONG CARALHO!");
+			}
 		}
 		if (command === "register"){
 			if(argc === 2){
