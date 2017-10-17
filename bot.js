@@ -319,6 +319,7 @@ function sendAJoke(username,channel) {
 		lastJoke = curr_timer;
 		if(tdif <= 60){
 			bot.sendMessage(channel, "Sérgio, sabemos que és rápido, mas ao menos deixa-me acabar (de contar a piada...)");
+			return;
 		}
         if(contador >= 1) {
             bot.sendMessage(channel, "Porra outra vez? Ainda à pouco tempo de contei uma piada.");
