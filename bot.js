@@ -14,7 +14,7 @@ const botAdmin = new Bot({token: config.adminToken});
 
 const drmoreira = "drmoreira";
 var contador = 0;
-
+var lastJoke = 0;
 //mail stuff
 var geralmail = new MailListener({
     username: config.mails.geral.user,
@@ -314,8 +314,14 @@ function processMessage(message) {
 
 function sendAJoke(username,channel) {
     if (username === "sergio.ramos") {
+		let curr_timer = Date.now();
+		let tdif = (curr_timer - lastJoke) / 1000;
+		lastJoke = curr_timer;
+		if(tdif <= 60){
+			bot.sendMessage(channel, "Sérgio, sabemos que és rápido, mas ao menos deixa-me acabar (de contar a piada...)");
+		}
         if(contador >= 1) {
-            bot.sendMessage(username, "Porra outra vez? Ainda à pouco tempo de contei uma piada.");
+            bot.sendMessage(channel, "Porra outra vez? Ainda à pouco tempo de contei uma piada.");
             contador = 0;
             return;
         } else {
