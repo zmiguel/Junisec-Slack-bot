@@ -234,10 +234,10 @@ bot.on('message', message => {
         let username = bot.find(message.user).name;
 
         if (command == "quote") {
-            sendAQuote(username);
+            sendAQuote(username,message.channel);
         }
         else if (command === "joke") {
-            sendAJoke(username);
+            sendAJoke(username,message.channel);
         }
         else if (command === "ping") {
             if (username === "sergio.ramos") {
@@ -269,21 +269,12 @@ bot.on('message', message => {
             }
         }
         else if (command === "help") {
-            bot.sendMessage(username, `"${config.prefix}quote"     -> recebes uma random quote`);
-            bot.sendMessage(username, `"${config.prefix}joke"      -> recebes uma random joke`);
-            bot.sendMessage(username, `"${config.prefix}ping"      -> é fácil perceber qual a resposta :) `);
-            bot.sendMessage(username, `"${config.prefix}register"  -> para criares um email`);
+            bot.sendMessage(username, `\n"${config.prefix}quote"     -> recebes uma random quote\n"${config.prefix}joke"      -> recebes uma random joke\n"${config.prefix}ping"      -> é fácil perceber qual a resposta :)\n"${config.prefix}register"  -> para criares um email`);
         }
         else {
-            bot.sendMessage(username, `Não conheço o comando: "${command}"`);
-            bot.sendMessage(username, `Usa o comando "${config.prefix}help" para veres a lista de comandos.`);
+            bot.sendMessage(username, `Não conheço o comando: "${command}"\nUsa o comando "${config.prefix}help" para veres a lista de comandos.`);
         }
     }
-});
-
-bot.on('team_join', function (data) {
-    // Greet a new member that joins
-    slack.sendPM(data.user.id, 'Bem-vindo!! :simple_smile: :beers:\n !register para te registares');
 });
 
 bot.on('hello', () => {
@@ -321,7 +312,7 @@ function processMessage(message) {
     }
 }
 
-function sendAJoke(username) {
+function sendAJoke(username,channel) {
     if (username === "sergio.ramos") {
         if(contador >= 1) {
             bot.sendMessage(username, "Porra outra vez? Ainda à pouco tempo de contei uma piada.");
@@ -335,32 +326,32 @@ function sendAJoke(username) {
         request('http://api.icndb.com/jokes/random', function (error, response, body) {
             if (!error) {
                 var bodyParsed = JSON.parse(response.body);
-                bot.sendMessage(username, bodyParsed.value.joke);
+                bot.sendMessage(channel, bodyParsed.value.joke);
             }
         });
     } else {
         request('http://api.yomomma.info/', function (error, response, body) {
             if (!error) {
                 var bodyParsed = JSON.parse(response.body);
-                bot.sendMessage(username, bodyParsed.joke);
+                bot.sendMessage(channel, bodyParsed.joke);
             }
         });
     }
 }
 
-function sendAQuote(username) {
+function sendAQuote(username,channel) {
     if (Math.random() >= 0.5) {
         request('https://talaikis.com/api/quotes/random/', function (error, response, body) {
             if (!error) {
                 var bodyParsed = JSON.parse(response.body);
-                bot.sendMessage(username, `Quote: ${bodyParsed.quote}\n By: ${bodyParsed.author}`);
+                bot.sendMessage(channel, `Quote: ${bodyParsed.quote}\n By: ${bodyParsed.author}`);
             }
         });
     } else {
         request('https://random-quote-generator.herokuapp.com/api/quotes/random', function (error, response, body) {
             if (!error) {
                 var bodyParsed = JSON.parse(response.body);
-                bot.sendMessage(username, `Quote: ${bodyParsed.quote}\n By: ${bodyParsed.author}`);
+                bot.sendMessage(channel, `Quote: ${bodyParsed.quote}\n By: ${bodyParsed.author}`);
             }
         });
     }
