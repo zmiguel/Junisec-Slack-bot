@@ -329,7 +329,7 @@ function sendAJoke(username,channel) {
             contador++;
         }
     }
-    if (Math.random() >= 0.5) {
+    if (random.bool()) {
         request('http://api.icndb.com/jokes/random', function (error, response, body) {
             if (!error) {
                 var bodyParsed = JSON.parse(response.body);
@@ -347,7 +347,7 @@ function sendAJoke(username,channel) {
 }
 
 function sendAQuote(username,channel) {
-    if (Math.random() >= 0.5) {
+    if (random.bool()) {
         request('https://talaikis.com/api/quotes/random/', function (error, response, body) {
             if (!error) {
                 var bodyParsed = JSON.parse(response.body);
