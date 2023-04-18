@@ -6,7 +6,7 @@
   "dependencies": {
     "jsonfile": "^2.4.0",
     "mail-listener2": "^0.3.1",
-    "nodemon": "^1.11.0",
+    "nodemon": "^1.19.4",
     "random-js": "^1.0.8",
     "request": "^2.81.0",
     "slackbot-api": "^1.13.2"
